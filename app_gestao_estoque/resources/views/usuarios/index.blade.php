@@ -250,7 +250,7 @@
     .dataTables_paginate {
         width: auto !important;
         height: auto !important;
-        margin-top: 10px !important; 
+        margin-top: 10px !important;
     }
 
     .dataTables_paginate a {
@@ -306,7 +306,7 @@
 
     .alert-success, .alert-danger {
         margin-top: 0px !important;
-    } 
+    }
 
     .nobreak {
         white-space: nowrap !important;
@@ -315,7 +315,7 @@
 
 <section class="usuarios-container">
     <div class="usuarios-content">
-        @include('partials.mensagem')  
+        @include('partials.mensagem')
         <button class="btn-principal">Cadastrar Usuário</button>
         <div class="usuarios-box">
             <h3>Usuários cadastrados</h3>
@@ -360,15 +360,14 @@
                 </thead>
                 <tbody>
                     @foreach ($usuarios as $usuario)
-                        @if ($usuario->login == "admin") 
+                        @if ($usuario->login == "admin")
                         @else
-                        <tr>
                             <td>{{$usuario->nome}}&nbsp;{{$usuario->sobrenome}}</td>
                             <td>{{$usuario->login}}</td>
                             <td>{{$usuario->email}}</td>
                             <td>{{$usuario->ativo}}</td>
                             <td>{{$usuario->acesso}}</td>
-                            <td>{{\Carbon\Carbon::parse($usuario->created_at)->format('d/m/Y')}}</td>
+                            <td>{{ \Carbon\Carbon::parse($usuario->created_at)->format('d/m/Y') }}</td>
                             <td><button class="editar"><img src="{{ asset('assets/img/icones/editar.svg') }}"></button></td>
                             <td>
                                 <div class="td-excluir">
@@ -391,7 +390,7 @@
             </table>
         </div>
     </div>
-</section>       
+</section>
 
 @foreach ($usuarios as $usuario)
     <section class="modal-container modal-editar">
@@ -521,13 +520,13 @@
 
     btnExcluir.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            modalExcluir[index].classList.toggle('abrir-excluir'); 
+            modalExcluir[index].classList.toggle('abrir-excluir');
         });
     });
 
     btnCancelar.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            modalExcluir[index].classList.remove('abrir-excluir'); 
+            modalExcluir[index].classList.remove('abrir-excluir');
         });
     });
 </script>

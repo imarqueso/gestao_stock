@@ -150,6 +150,7 @@
                     <th>Quantidade</th>
                     <th>Cadastro</th>
                 </tr>
+                @if(isset($produtos))
                 @foreach ($produtos as $produto)
                     <tr>
                         <td class="produtos-td-1">{{$produto->produto}}</td>
@@ -158,6 +159,7 @@
                         <td class="produtos-td-4">{{\Carbon\Carbon::parse($produto->created_at)->format('d/m/Y')}}</td>
                     </tr>
                 @endforeach
+                @endif
             </table>
         </div>
         <div class="dashboard-box">
@@ -171,6 +173,7 @@
                     <th>Data da Venda</th>
                     <th>Total</th>
                 </tr>
+                @if(isset($vendas))
                 @foreach ($vendas as $venda)
                     <tr>
                         <td class="vendas-td-1">{{$venda->id}}</td>
@@ -181,6 +184,7 @@
                         <td class="vendas-td-6 dinheiro nobreak">R$ {{$venda->total}}</td>
                     </tr>
                 @endforeach
+                @endif
             </table>
         </div>
     </div>

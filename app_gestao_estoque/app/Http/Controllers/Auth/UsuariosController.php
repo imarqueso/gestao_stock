@@ -21,7 +21,7 @@ class UsuariosController extends Controller
             'usuarios.email',
             'usuarios.ativo',
             'usuarios.acesso',
-            'usuarios.created_at AS data_cadastro',
+            'usuarios.created_at',
         )->get();
 
         return view('usuarios.index', compact('usuarios'));

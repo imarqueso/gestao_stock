@@ -18,6 +18,7 @@ class CreateNotasTable extends Migration
             $table->integer('cpf');
             $table->string('cliente');
             $table->text('itens');
+            $table->integer('qtd_itens');
             $table->date('data_venda');
             $table->double('total', 8, 2);
             $table->timestamps();
