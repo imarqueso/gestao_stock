@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Nota;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 
 class NotasController extends Controller
@@ -77,9 +78,8 @@ class NotasController extends Controller
         return redirect("/notas")->with('msg', 'Nota cadastrada com sucesso!');
     }
 
-    public function nota($id)
+    public function nota($id, PDF $pdf)
     {
-
         $notas = Nota::select(
             'notas.id',
             'notas.cpf',
@@ -92,6 +92,9 @@ class NotasController extends Controller
             'notas.created_at',
         )->where('notas.id', '=', $id)->get();
 
-        return view('notas.nota', compact('notas'));
+        $pdf = $pdf->loadView('notas.nota', compact('notas'))
+                   ->setPaper('a4', 'portrait');
+
+        return $pdf->download('nota_' . $id . '.pdf');
     }
 }
