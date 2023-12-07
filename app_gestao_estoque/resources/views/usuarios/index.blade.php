@@ -423,7 +423,7 @@
                 </label>
                 <label>
                     <span>Ativo:</span>
-                    <select name="acesso">
+                    <select name="ativo">
                         <option selected value="{{$usuario->ativo}}">{{$usuario->ativo}}</option>
                         <option value="Sim">Sim</option>
                         <option value="Não">Não</option>
