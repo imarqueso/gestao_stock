@@ -20,7 +20,8 @@ class CreateNotasTable extends Migration
             $table->text('itens');
             $table->integer('qtd_itens');
             $table->date('data_venda');
-            $table->double('total', 8, 2);
+            $table->text('total');
+            $table->text('observacoes');
             $table->timestamps();
         });
     }

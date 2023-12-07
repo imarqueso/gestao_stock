@@ -280,7 +280,7 @@
     .dataTables_paginate {
         width: auto !important;
         height: auto !important;
-        margin-top: 10px !important; 
+        margin-top: 10px !important;
     }
 
     .dataTables_paginate a {
@@ -410,7 +410,7 @@
 
 <section class="notas-container">
     <div class="notas-content">
-        @include('partials.mensagem') 
+        @include('partials.mensagem')
         @if (Auth::user()->acesso == 'Admin' || Auth::user()->acesso == 'Master')
             <button class="btn-principal">Cadastrar Nota</button>
         @endif
@@ -427,14 +427,14 @@
                         <input type="text" name="cliente" placeholder="Cliente:">
                         <input id="quantidade-item" name="qtd_itens" type="number" required min="1" placeholder="Quantidade de itens:">
                         <div class="box-form" id="box-form">
-                            
+
                         </div>
                         <label>
                             <span>Data da venda:</span>
                             <input type="date" name="data_venda" placeholder="Data da Venda:">
                         </label>
                         <textarea placeholder="Observações:" name="observacoes"></textarea>
-                        <input type="number" step="0.01" name="total" placeholder="Total da Nota:">
+                        <input type="text" class="preco" name="total" placeholder="Total da Nota:">
                         <button class="salvar" type="submit">Salvar</button>
                     </form>
                 </div>
@@ -494,7 +494,7 @@
             </table>
         </div>
     </div>
-</section>       
+</section>
 
 <script>
     $(document).ready(function() {
@@ -538,15 +538,16 @@
             element_itens.appendChild(y);
             var z = document.createElement("input");
             z.setAttribute("value", "");
-            z.setAttribute("type", "number");
-            z.setAttribute("step", "0.01");
+            z.setAttribute("type", "text");
             z.setAttribute("class", "qtd-prod");
+            z.setAttribute("class", "preco");
             z.setAttribute("name", "preco[]");
             z.setAttribute("placeholder", "Preço do produto " + (i + 1) + ":");
             z.setAttribute("required", "");
             element_itens.appendChild(x);
             element_itens.appendChild(y);
             element_itens.appendChild(z);
+            $('.preco').mask('#.##0,00', {reverse: true});
         }
         if((quantidade_itens == 0)) {
             element_itens.innerHTML = '';
@@ -588,13 +589,13 @@
 
     btnExcluir.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            modalExcluir[index].classList.toggle('abrir-excluir'); 
+            modalExcluir[index].classList.toggle('abrir-excluir');
         });
     });
 
     btnCancelar.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            modalExcluir[index].classList.remove('abrir-excluir'); 
+            modalExcluir[index].classList.remove('abrir-excluir');
         });
     });
 </script>
@@ -616,6 +617,13 @@
     for (var w = 0; w < total.length; w++) {
         total[w].innerHTML = total[w].innerHTML.replace('.', ",");
     }
+</script>
+
+<script>
+    $(document).ready(function(){
+        // Aplica a máscara de moeda ao campo de entrada
+        $('.preco').mask('#.##0,00', {reverse: true});
+    });
 </script>
 
 @endsection

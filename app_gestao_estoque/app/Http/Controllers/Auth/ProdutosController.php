@@ -35,13 +35,21 @@ class ProdutosController extends Controller
         return redirect("/produtos")->with('msg', 'Produto cadastrado com sucesso!');
     }
 
+     private function formatarNumero($numero) {
+        $numero = str_replace('.', '', $numero); // Remove separador de milhar
+        $numero = str_replace(',', '.', $numero); // Troca vírgula por ponto
+        return floatval($numero); // Converte a string para float
+    }
+
     public function vender(Request $request, $id)
     {
         $produto = Produto::find($id);
 
+        $preco = $this->formatarNumero($request->preco);
+
         $somaProdutoVendido = $produto->vendidos + $request->vendidos;
         $subtracaoProdutoVendido = $produto->quantidade - $request->vendidos;
-        $totalProdutoVendido = $produto->preco * $request->vendidos;
+        $totalProdutoVendido = $preco * $request->vendidos;
 
         $produto->update([
             'vendidos' => $somaProdutoVendido,

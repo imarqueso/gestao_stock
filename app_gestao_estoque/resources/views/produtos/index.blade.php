@@ -250,7 +250,7 @@
     .dataTables_paginate {
         width: auto !important;
         height: auto !important;
-        margin-top: 10px !important; 
+        margin-top: 10px !important;
     }
 
     .dataTables_paginate a {
@@ -306,7 +306,7 @@
 
     .alert-success, .alert-danger {
         margin-top: 0px !important;
-    } 
+    }
 
     .nobreak {
         white-space: nowrap !important;
@@ -315,7 +315,7 @@
 
 <section class="produtos-container">
     <div class="produtos-content">
-        @include('partials.mensagem')  
+        @include('partials.mensagem')
         @if (Auth::user()->acesso == 'Admin' || Auth::user()->acesso == 'Master')
         <button class="btn-principal">Cadastrar Produto</button>
         @endif
@@ -329,7 +329,7 @@
                     <form method="post" action="{{ route('cadastrarProduto') }}" enctype="multipart/form-data">
                         @csrf
                         <input type="text" name="produto" placeholder="Produto:" required>
-                        <input type="number" step="0.01" name="preco" placeholder="Preço:" required>
+                        <input type="text" name="preco" placeholder="Preço:" class="preco" required>
                         <input type="number" name="quantidade" placeholder="Quantidade:" required>
                         <input type="number" name="vendidos" placeholder="Vendidos:" required>
                         <button class="salvar" type="submit">Salvar</button>
@@ -384,7 +384,7 @@
             </table>
         </div>
     </div>
-</section>       
+</section>
 
 @if (Auth::user()->acesso == 'Admin' || Auth::user()->acesso == 'Master')
 @foreach ($produtos as $produto)
@@ -397,7 +397,7 @@
             enctype="multipart/form-data">
                 @csrf
                 <input type="text" value="{{$produto->produto}}" name="produto"  placeholder="Produto:" disabled required>
-                <input type="number" step="0.01" value="{{$produto->preco}}" name="preco"  placeholder="Preco:" required hidden>
+                <input type="text" value="{{$produto->preco}}" name="preco"  placeholder="Preco:" required hidden class="preco">
                 <label>
                     <span>Data da venda:</span>
                     <input type="date" required name="data_venda" placeholder="Data da Venda:">
@@ -423,7 +423,7 @@
                 </label>
                 <label>
                     <span>Preço:</span>
-                    <input type="number" value="{{$produto->preco}}" name="preco" placeholder="Preço:" required>
+                    <input type="text" value="{{$produto->preco}}" name="preco" placeholder="Preço:" required class="preco">
                 </label>
                 <label>
                     <span>Quantidade:</span>
@@ -538,13 +538,13 @@
 
     btnExcluir.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            modalExcluir[index].classList.toggle('abrir-excluir'); 
+            modalExcluir[index].classList.toggle('abrir-excluir');
         });
     });
 
     btnCancelar.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            modalExcluir[index].classList.remove('abrir-excluir'); 
+            modalExcluir[index].classList.remove('abrir-excluir');
         });
     });
 </script>
@@ -556,6 +556,13 @@
     for (var z = 0; z < dinheiro.length; z++) {
         dinheiro[z].innerHTML = dinheiro[z].innerHTML.replace('.', ",");
     }
+</script>
+
+<script>
+    $(document).ready(function(){
+        // Aplica a máscara de moeda ao campo de entrada
+        $('.preco').mask('#.##0,00', {reverse: true});
+    });
 </script>
 
 @endsection

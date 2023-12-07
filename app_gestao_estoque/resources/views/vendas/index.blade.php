@@ -250,7 +250,7 @@
     .dataTables_paginate {
         width: auto !important;
         height: auto !important;
-        margin-top: 10px !important; 
+        margin-top: 10px !important;
     }
 
     .dataTables_paginate a {
@@ -306,7 +306,7 @@
 
     .alert-success, .alert-danger {
         margin-top: 0px !important;
-    } 
+    }
 
     .nobreak {
         white-space: nowrap !important;
@@ -315,7 +315,7 @@
 
 <section class="vendas-container">
     <div class="vendas-content">
-        @include('partials.mensagem')  
+        @include('partials.mensagem')
         @if (Auth::user()->acesso == 'Admin' || Auth::user()->acesso == 'Master')
         <button class="btn-principal">Cadastrar Venda</button>
         @endif
@@ -394,7 +394,7 @@
             </table>
         </div>
     </div>
-</section>       
+</section>
 
 <script>
     $(document).ready(function() {
@@ -447,13 +447,13 @@
 
     btnExcluir.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            modalExcluir[index].classList.toggle('abrir-excluir'); 
+            modalExcluir[index].classList.toggle('abrir-excluir');
         });
     });
 
     btnCancelar.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            modalExcluir[index].classList.remove('abrir-excluir'); 
+            modalExcluir[index].classList.remove('abrir-excluir');
         });
     });
 </script>
@@ -465,6 +465,13 @@
     for (var z = 0; z < dinheiro.length; z++) {
         dinheiro[z].innerHTML = dinheiro[z].innerHTML.replace('.', ",");
     }
+</script>
+
+<script>
+    $(document).ready(function(){
+        // Aplica a máscara de moeda ao campo de entrada
+        $('.preco').mask('#.##0,00', {reverse: true});
+    });
 </script>
 
 @endsection

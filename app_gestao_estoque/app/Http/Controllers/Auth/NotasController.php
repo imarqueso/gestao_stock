@@ -35,6 +35,11 @@ class NotasController extends Controller
     }
 
 
+    private function formatarNumero($numero) {
+        $numero = str_replace('.', '', $numero); // Remove separador de milhar
+        $numero = str_replace(',', '.', $numero); // Troca vírgula por ponto
+        return floatval($numero); // Converte a string para float
+    }
 
     public function cadastrar(Request $request)
     {
@@ -49,7 +54,7 @@ class NotasController extends Controller
                 'produtos' => $produto[$i],
                 'quantidade' => $quantidade[$i],
                 'preco' => $preco[$i],
-                'total_item' => $preco[$i] * $quantidade[$i],
+                'total_item' => $this->formatarNumero($preco[$i]) * $quantidade[$i],
             ];
             array_push($itens_array, $produtos);
         }

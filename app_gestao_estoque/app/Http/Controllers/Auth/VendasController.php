@@ -27,13 +27,21 @@ class VendasController extends Controller
         return view('vendas.index', compact('listaProd', 'vendas'));
     }
 
+    private function formatarNumero($numero) {
+        $numero = str_replace('.', '', $numero); // Remove separador de milhar
+        $numero = str_replace(',', '.', $numero); // Troca vírgula por ponto
+        return floatval($numero); // Converte a string para float
+    }
+
     public function cadastrar(Request $request)
     {
         $produto = Produto::find($request->produto_id);
 
+        $preco = $this->formatarNumero($produto->preco);
+
         $somaProdutoVendido = $produto->vendidos + $request->vendidos;
         $subtracaoProdutoVendido = $produto->quantidade - $request->vendidos;
-        $totalProdutoVendido = $produto->preco * $request->vendidos;
+        $totalProdutoVendido = $preco * $request->vendidos;
 
         $produto->update([
             'quantidade' => $subtracaoProdutoVendido,
