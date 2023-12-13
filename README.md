@@ -15,7 +15,8 @@ O GestãoStock é um sistema web projetado para ajudar na gestão eficiente de e
 - Bootstrap
 - PHP
 - Laravel
-
+- MySQL
+  
 ## Instalação
 
 Siga os passos abaixo para configurar e executar localmente o GestãoStock em seu ambiente:
