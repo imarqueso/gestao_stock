@@ -47,7 +47,7 @@ Siga os passos abaixo para configurar e executar localmente o GestãoStock em se
 
 7. **Execute o seed do banco de dados:**
 
-   php artisan db:seed
+   ```php artisan db:seed```
 
 
 
