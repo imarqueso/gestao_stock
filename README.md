@@ -28,10 +28,6 @@ Siga os passos abaixo para configurar e executar localmente o GestãoStock em se
 2. **Abra a pasta do sistema no terminal:**
 
    ```cd GestaoStock```
-
-2. **Abra a pasta do sistema no terminal:**
-
-   ```cd GestaoStock```
    
 3. **Instale o composer:**
 
